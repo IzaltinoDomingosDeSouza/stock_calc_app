@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stock_calc_app/screens/add_stock_info.dart';
 
 void main() {
   runApp(const StockCalcApp());
@@ -14,7 +15,7 @@ class StockCalcApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Scaffold(body: Center(child: Text('Stock Calc App'))),
+      home: AddStockInfoScreen(),
     );
   }
 }
