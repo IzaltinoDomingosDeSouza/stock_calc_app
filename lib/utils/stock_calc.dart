@@ -1,4 +1,4 @@
-import "package:stock_calc_app/stock_info.dart";
+import "package:stock_calc_app/models/stock_info.dart";
 
 class StockCalc {
   static Map<String, double> investment(StockInfo stock, double amount) {

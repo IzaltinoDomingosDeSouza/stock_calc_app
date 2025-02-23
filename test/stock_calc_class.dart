@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stock_calc_app/stock_calc.dart';
-import "package:stock_calc_app/stock_info.dart";
+import 'package:stock_calc_app/utils/stock_calc.dart';
+import "package:stock_calc_app/models/stock_info.dart";
 import 'package:stock_calc_app/main.dart';
 
 StockInfo stock = StockInfo(name: 'PETR4', price: 38.0, annualDividends: 7.91);
