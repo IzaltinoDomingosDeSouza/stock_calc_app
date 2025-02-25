@@ -11,6 +11,10 @@ class StockInfoList {
   factory StockInfoList() {
     return _instance;
   }
+
+  List<StockInfo> get items => _stockInfoList;
+  int get length => _stockInfoList.length;
+
   Future<void> load() async {
     final _prefs = await SharedPreferences.getInstance();
     String? _stockInfoData = _prefs.getString('stock_info_data');
