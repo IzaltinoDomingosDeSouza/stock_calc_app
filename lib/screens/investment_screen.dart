@@ -74,49 +74,54 @@ class InvestmentState extends State<InvestmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: Text('Investment')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          StockDropDownMenu(
-            stocks: stockInfoList?.items ?? [],
-            selectedStockName: _selectedStockInfo?.name ?? null,
-            onSelectStock: (StockInfo? selected) {
-              setState(() {
-                _selectedStockInfo = selected;
-              });
-            },
-          ),
-          SizedBox(height: 25),
-          TextField(
-            controller: _investmentAmount,
-            onSubmitted: (amount) => calcInvestmentAmount(amount),
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.payments),
-              hintText: 'Enter Investment Amount',
-              border: OutlineInputBorder(),
-              errorText:
-                  isInvestmentAmountValid ? null : 'Please enter a valid value',
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            StockDropDownMenu(
+              stocks: stockInfoList?.items ?? [],
+              selectedStockName: _selectedStockInfo?.name ?? null,
+              onSelectStock: (StockInfo? selected) {
+                setState(() {
+                  _selectedStockInfo = selected;
+                });
+              },
             ),
-          ),
-          SizedBox(height: 20),
-          Text(
-            "Estimated Dividends",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
+            SizedBox(height: 25),
+            TextField(
+              controller: _investmentAmount,
+              onSubmitted: (amount) => calcInvestmentAmount(amount),
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.payments),
+                hintText: 'Enter Investment Amount',
+                border: OutlineInputBorder(),
+                errorText:
+                    isInvestmentAmountValid
+                        ? null
+                        : 'Please enter a valid value',
+              ),
             ),
-          ),
-          SizedBox(height: 15),
-          Text(
-            "${_dividends?['monthly_dividends']?.toStringAsFixed(2) ?? '0.00'} monthly",
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          ),
-          Text(
-            "${_dividends?['annually_dividends']?.toStringAsFixed(2) ?? '0.00'} annually",
-            style: TextStyle(fontSize: 18, color: Colors.black),
-          ),
-        ],
+            SizedBox(height: 20),
+            Text(
+              "Estimated Dividends",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
+            SizedBox(height: 15),
+            Text(
+              "${_dividends?['monthly_dividends']?.toStringAsFixed(2) ?? '0.00'} monthly",
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+            Text(
+              "${_dividends?['annually_dividends']?.toStringAsFixed(2) ?? '0.00'} annually",
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+          ],
+        ),
       ),
     );
   }
