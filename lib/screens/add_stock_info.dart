@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stock_calc_app/models/stock_info.dart';
+import 'package:stock_calc_app/models/stock_info_list.dart';
 
 class AddStockInfoScreen extends StatefulWidget {
   @override
@@ -6,9 +8,29 @@ class AddStockInfoScreen extends StatefulWidget {
 }
 
 class AddStockInfoState extends State<AddStockInfoScreen> {
+  final StockInfoList stockInfoList = StockInfoList();
+
   TextEditingController _stockName = TextEditingController();
   TextEditingController _stockPrice = TextEditingController();
   TextEditingController _stockAnnualDividends = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadStockInfo();
+  }
+
+  @override
+  void dispose() {
+    _stockName.dispose();
+    _stockPrice.dispose();
+    _stockAnnualDividends.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadStockInfo() async {
+    await stockInfoList.load();
+  }
 
   bool _isStockNameValid = true;
   bool _isStockPriceValid = true;
@@ -24,15 +46,69 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
     return true;
   }
 
-  void saveStockInfo() {
+  Future<void> loadStockInfoByName(String stockName) async {
+    StockInfo? stockInfo = stockInfoList.findByStockName(stockName);
+    if (stockInfo != null) {
+      setState(() {
+        _stockName.text = _stockName.text.toUpperCase();
+        _stockPrice.text = stockInfo.price.toStringAsFixed(2);
+        _stockAnnualDividends.text = stockInfo.annualDividends.toStringAsFixed(
+          2,
+        );
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Stock info $stockName loaded successfully!"),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Stock info $stockName may not exist!"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  Future<void> saveStockInfo() async {
     setState(() {
+      _stockName.text = _stockName.text.toUpperCase();
       _isStockNameValid = validate_text(_stockName.text);
       _isStockPriceValid = validate_money_value(_stockPrice.text);
       _isStockAnnualDividendsValid = validate_money_value(
         _stockAnnualDividends.text,
       );
     });
-    // TODO save this data
+
+    if (_isStockNameValid &&
+        _isStockPriceValid &&
+        _isStockAnnualDividendsValid) {
+      bool wasSaved = await stockInfoList.addOrUpdate(
+        StockInfo(
+          name: _stockName.text,
+          price: double.parse(_stockPrice.text),
+          annualDividends: double.parse(_stockAnnualDividends.text),
+        ),
+      );
+
+      if (wasSaved) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Stock info saved successfully!"),
+            backgroundColor: Colors.green,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Failed to save stock info.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -44,6 +120,7 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         children: [
           TextField(
             controller: _stockName,
+            onSubmitted: (stockName) => loadStockInfoByName(stockName),
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.label),
               hintText: 'Enter Stock Name',
