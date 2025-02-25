@@ -1,10 +1,7 @@
 import "package:stock_calc_app/models/stock_info.dart";
 
-enum TimePeriod
-{
-  Annually,
-  Monthly
-}
+enum TimePeriod { Annually, Monthly }
+
 class StockCalc {
   static Map<String, double> investment(StockInfo stock, double amount) {
     int share = (amount / stock.price).floor();
