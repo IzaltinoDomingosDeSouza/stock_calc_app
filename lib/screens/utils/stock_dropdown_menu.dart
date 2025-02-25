@@ -29,11 +29,8 @@ class StockDropDownMenu extends StatelessWidget {
               : [],
       onChanged: (String? stockName) {
         if (stockName != null) {
-          int index = stocks.indexWhere(
-            (stock) => stock.name == stockName,
-          );
-          if (index != -1)
-            onSelectStock(stocks[index]);
+          int index = stocks.indexWhere((stock) => stock.name == stockName);
+          if (index != -1) onSelectStock(stocks[index]);
         }
       },
       isExpanded: true,
