@@ -16,10 +16,20 @@ void main() {
   });
 
   test('test StockCalc class goal investment', () {
-    double dividends = 7.91;
+    TimePeriod timePeriod = TimePeriod.Annually;
+    double dividends = 1000;
     expect(
-      StockCalc.goal_investment(stock, dividends, true),
-      closeTo(38, 0.01),
+      StockCalc.goal_investment(stock, dividends, timePeriod),
+      closeTo(4788, 0.01),
+    );
+  });
+  
+  test('test StockCalc class goal investment', () {
+    TimePeriod timePeriod = TimePeriod.Monthly;
+    double dividends = 1000;
+    expect(
+      StockCalc.goal_investment(stock, dividends, timePeriod),
+      closeTo(57646, 0.01),
     );
   });
 }
