@@ -99,7 +99,7 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
                     controller: _requiredAmount,
                     onSubmitted: (amount) => calcRequiredAmount(amount),
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.payments),
+                      prefixIcon: Icon(Icons.savings),
                       hintText: 'Enter Dividends Amount',
                       border: OutlineInputBorder(),
                       errorText:
