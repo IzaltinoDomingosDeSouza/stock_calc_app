@@ -114,11 +114,11 @@ class InvestmentState extends State<InvestmentScreen> {
             SizedBox(height: 15),
             Text(
               "${_dividends?['monthly_dividends']?.toStringAsFixed(2) ?? '0.00'} monthly",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(fontSize: 18),
             ),
             Text(
               "${_dividends?['annually_dividends']?.toStringAsFixed(2) ?? '0.00'} annually",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(fontSize: 18),
             ),
           ],
         ),

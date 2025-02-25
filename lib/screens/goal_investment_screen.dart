@@ -140,7 +140,7 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
             SizedBox(height: 15),
             Text(
               "${_requiredAmountResult?.toStringAsFixed(2) ?? '0.00'}",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(fontSize: 18),
             ),
           ],
         ),
