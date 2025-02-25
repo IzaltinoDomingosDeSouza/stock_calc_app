@@ -75,7 +75,7 @@ class InvestmentState extends State<InvestmentScreen> {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: Text('Investment')),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
