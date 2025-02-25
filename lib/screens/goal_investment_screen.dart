@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_calc_app/models/stock_info.dart';
 import 'package:stock_calc_app/models/stock_info_list.dart';
 import 'package:stock_calc_app/utils/stock_calc.dart';
+import 'package:stock_calc_app/screens/utils/stock_dropdown_menu.dart';
 
 class GoalInvestmentScreen extends StatefulWidget {
   @override
@@ -78,32 +79,14 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          DropdownButtonFormField<String>(
-            value:
-                _selectedStockInfo?.name.isNotEmpty == true
-                    ? _selectedStockInfo?.name
-                    : null,
-            hint: const Text('Select stock', style: TextStyle(fontSize: 18)),
-            items:
-                stockInfoList?.items?.isNotEmpty == true
-                    ? stockInfoList.items.map((StockInfo stockInfo) {
-                      return DropdownMenuItem<String>(
-                        value: stockInfo.name,
-                        child: Text(
-                          stockInfo.name,
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                      );
-                    }).toList()
-                    : [],
-            onChanged: (String? stockName) {
+          StockDropDownMenu(
+            stocks: stockInfoList?.items ?? [],
+            selectedStockName: _selectedStockInfo?.name ?? null,
+            onSelectStock: (StockInfo? selected) {
               setState(() {
-                _selectedStockInfo = stockInfoList.findByStockName(
-                  stockName ?? "",
-                );
+                _selectedStockInfo = selected;
               });
             },
-            isExpanded: true,
           ),
           SizedBox(height: 20),
           Row(
@@ -124,7 +107,7 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
                   ),
                 ),
               ),
-          SizedBox(width: 5),
+              SizedBox(width: 5),
               Expanded(
                 child: DropdownMenu<String>(
                   initialSelection: selectedTimePeriod.name,
