@@ -20,7 +20,7 @@ class StockCalc {
     if (isAnnually)
       share = (dividends / stock.annualDividends).floor();
     else
-      share = ((dividends / stock.annualDividends) / 12).floor();
+      share = (dividends / (stock.annualDividends / 12)).floor();
 
     return share * stock.price;
   }
