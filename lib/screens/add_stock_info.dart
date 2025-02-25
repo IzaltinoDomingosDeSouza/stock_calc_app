@@ -30,6 +30,7 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
 
   Future<void> _loadStockInfo() async {
     await stockInfoList.load();
+    setState(() {});
   }
 
   bool _isStockNameValid = true;
