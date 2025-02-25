@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stock_calc_app/screens/add_stock_info.dart';
 import 'package:stock_calc_app/screens/investment_screen.dart';
+import 'package:stock_calc_app/screens/goal_investment_screen.dart';
 
 class StockCalcNavigation extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class _StockCalcNavigationState extends State<StockCalcNavigation> {
 
   final List<Widget> _screens = [
     InvestmentScreen(),
-    Center(child: Text('Goal Investment Screen')), //TODO
+    GoalInvestmentScreen(),
     AddStockInfoScreen(),
   ];
 
@@ -38,10 +39,7 @@ class _StockCalcNavigationState extends State<StockCalcNavigation> {
             icon: Icon(Icons.track_changes),
             label: 'Goal Investment',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add Stock',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Stock'),
         ],
       ),
     );
