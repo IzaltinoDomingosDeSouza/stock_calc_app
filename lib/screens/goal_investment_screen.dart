@@ -110,7 +110,8 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
                   ),
                 ),
                 SizedBox(width: 5),
-                Expanded(
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.10,
                   child: DropdownMenu<String>(
                     initialSelection: selectedTimePeriod.name,
                     dropdownMenuEntries: const [
