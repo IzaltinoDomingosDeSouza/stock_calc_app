@@ -13,8 +13,8 @@ class StockCalcApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Stock Calc',
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
       themeMode: ThemeMode.system,
       home: StockCalcNavigation(),
     );
