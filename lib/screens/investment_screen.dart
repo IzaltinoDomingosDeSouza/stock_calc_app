@@ -74,29 +74,33 @@ class InvestmentState extends State<InvestmentScreen> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
-        StockDropDownMenu(
-          stocks: stockInfoList?.items ?? [],
-          selectedStockName: _selectedStockInfo?.name ?? null,
-          onSelectStock: (StockInfo? selected) {
-            setState(() {
-              _selectedStockInfo = selected;
-            });
-          },
-        ),
-        SizedBox(height: 25),
-        TextField(
-          controller: _investmentAmount,
-          onSubmitted: (amount) => calcInvestmentAmount(amount),
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.payments),
-            hintText: 'Enter Investment',
-            border: OutlineInputBorder(),
-            errorText:
-                isInvestmentAmountValid ? null : 'Please enter a valid value',
+        Flexible(
+          flex: 2,
+          child: StockDropDownMenu(
+            stocks: stockInfoList?.items ?? [],
+            selectedStockName: _selectedStockInfo?.name ?? null,
+            onSelectStock: (StockInfo? selected) {
+              setState(() {
+                _selectedStockInfo = selected;
+              });
+            },
           ),
         ),
-        SizedBox(height: 20),
+        Flexible(
+          child: TextField(
+            controller: _investmentAmount,
+            onSubmitted: (amount) => calcInvestmentAmount(amount),
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.payments),
+              hintText: 'Enter Investment',
+              border: OutlineInputBorder(),
+              errorText:
+                  isInvestmentAmountValid ? null : 'Please enter a valid value',
+            ),
+          ),
+        ),
         Text(
           "Estimated Dividends",
           style: TextStyle(
@@ -105,7 +109,6 @@ class InvestmentState extends State<InvestmentScreen> {
             color: Colors.green,
           ),
         ),
-        SizedBox(height: 15),
         Text(
           "${_dividends?['monthly_dividends']?.toStringAsFixed(2) ?? '0.00'} monthly",
           style: TextStyle(fontSize: 18),

@@ -116,42 +116,48 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
-        TextField(
-          controller: _stockName,
-          onSubmitted: (stockName) => loadStockInfoByName(stockName),
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.label),
-            hintText: 'Enter Stock Name',
-            border: OutlineInputBorder(),
-            errorText: _isStockNameValid ? null : 'Please enter a name',
+        Flexible(
+          child: TextField(
+            controller: _stockName,
+            onSubmitted: (stockName) => loadStockInfoByName(stockName),
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.label),
+              hintText: 'Enter Stock Name',
+              border: OutlineInputBorder(),
+              errorText: _isStockNameValid ? null : 'Please enter a name',
+            ),
           ),
         ),
-        SizedBox(height: 20),
-        TextField(
-          controller: _stockPrice,
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.payments),
-            hintText: 'Enter Stock Price',
-            border: OutlineInputBorder(),
-            errorText:
-                _isStockPriceValid ? null : 'Please enter a valid value number',
+        Flexible(
+          child: TextField(
+            controller: _stockPrice,
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.payments),
+              hintText: 'Enter Stock Price',
+              border: OutlineInputBorder(),
+              errorText:
+                  _isStockPriceValid
+                      ? null
+                      : 'Please enter a valid value number',
+            ),
           ),
         ),
-        SizedBox(height: 20),
-        TextField(
-          controller: _stockAnnualDividends,
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.savings),
-            hintText: 'Enter Annual Dividends',
-            border: OutlineInputBorder(),
-            errorText:
-                _isStockAnnualDividendsValid
-                    ? null
-                    : 'Please enter a valid value number',
+        Flexible(
+          child: TextField(
+            controller: _stockAnnualDividends,
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.savings),
+              hintText: 'Enter Annual Dividends',
+              border: OutlineInputBorder(),
+              errorText:
+                  _isStockAnnualDividendsValid
+                      ? null
+                      : 'Please enter a valid value number',
+            ),
           ),
         ),
-        SizedBox(height: 30),
         ElevatedButton(
           onPressed: saveStockInfo,
           child: Icon(Icons.add, size: 24),
