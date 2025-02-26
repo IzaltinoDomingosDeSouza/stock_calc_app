@@ -74,77 +74,71 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text('Goal Investment')),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        StockDropDownMenu(
+          stocks: stockInfoList?.items ?? [],
+          selectedStockName: _selectedStockInfo?.name ?? null,
+          onSelectStock: (StockInfo? selected) {
+            setState(() {
+              _selectedStockInfo = selected;
+            });
+          },
+        ),
+        SizedBox(height: 20),
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            StockDropDownMenu(
-              stocks: stockInfoList?.items ?? [],
-              selectedStockName: _selectedStockInfo?.name ?? null,
-              onSelectStock: (StockInfo? selected) {
-                setState(() {
-                  _selectedStockInfo = selected;
-                });
-              },
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _requiredAmount,
-                    onSubmitted: (amount) => calcRequiredAmount(amount),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.savings),
-                      hintText: 'Enter Dividends Amount',
-                      border: OutlineInputBorder(),
-                      errorText:
-                          isRequiredAmountValid
-                              ? null
-                              : 'Please enter a valid value',
-                    ),
-                  ),
+            Expanded(
+              child: TextField(
+                controller: _requiredAmount,
+                onSubmitted: (amount) => calcRequiredAmount(amount),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.savings),
+                  hintText: 'Enter Dividends Amount',
+                  border: OutlineInputBorder(),
+                  errorText:
+                      isRequiredAmountValid
+                          ? null
+                          : 'Please enter a valid value',
                 ),
-                SizedBox(width: 5),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.10,
-                  child: DropdownMenu<String>(
-                    initialSelection: selectedTimePeriod.name,
-                    dropdownMenuEntries: const [
-                      DropdownMenuEntry(value: 'Annually', label: 'Annually'),
-                      DropdownMenuEntry(value: 'Monthly', label: 'Monthly'),
-                    ],
-                    onSelected: (String? timePeriod) {
-                      if (timePeriod == null || timePeriod == 'Annually')
-                        selectedTimePeriod = TimePeriod.Annually;
-                      else
-                        selectedTimePeriod = TimePeriod.Monthly;
-                    },
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text(
-              "Estimated Required Amount",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
               ),
             ),
-            SizedBox(height: 15),
-            Text(
-              "${_requiredAmountResult?.toStringAsFixed(2) ?? '0.00'}",
-              style: TextStyle(fontSize: 18),
+            SizedBox(width: 5),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.10,
+              child: DropdownMenu<String>(
+                initialSelection: selectedTimePeriod.name,
+                dropdownMenuEntries: const [
+                  DropdownMenuEntry(value: 'Annually', label: 'Annually'),
+                  DropdownMenuEntry(value: 'Monthly', label: 'Monthly'),
+                ],
+                onSelected: (String? timePeriod) {
+                  if (timePeriod == null || timePeriod == 'Annually')
+                    selectedTimePeriod = TimePeriod.Annually;
+                  else
+                    selectedTimePeriod = TimePeriod.Monthly;
+                },
+              ),
             ),
           ],
         ),
-      ),
+        SizedBox(height: 20),
+        Text(
+          "Estimated Required Amount",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.green,
+          ),
+        ),
+        SizedBox(height: 15),
+        Text(
+          "${_requiredAmountResult?.toStringAsFixed(2) ?? '0.00'}",
+          style: TextStyle(fontSize: 18),
+        ),
+      ],
     );
   }
 }

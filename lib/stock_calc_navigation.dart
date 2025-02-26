@@ -26,7 +26,11 @@ class _StockCalcNavigationState extends State<StockCalcNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
+      appBar: AppBar(centerTitle: true, title: Text('Stock Calc')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: _screens[_currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
