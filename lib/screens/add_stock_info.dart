@@ -121,7 +121,7 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         Flexible(
           child: TextField(
             controller: _stockName,
-            onSubmitted: (stockName) => loadStockInfoByName(stockName),
+            onSubmitted: (stockName) => loadStockInfoByName(stockName.toUpperCase()),
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.label),
               hintText: 'Enter Stock Name',
