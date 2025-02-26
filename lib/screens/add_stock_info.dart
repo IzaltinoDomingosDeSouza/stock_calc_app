@@ -121,7 +121,8 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         Flexible(
           child: TextField(
             controller: _stockName,
-            onSubmitted: (stockName) => loadStockInfoByName(stockName.toUpperCase()),
+            onSubmitted:
+                (stockName) => loadStockInfoByName(stockName.toUpperCase()),
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.label),
               hintText: 'Enter Stock Name',
@@ -133,6 +134,12 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         Flexible(
           child: TextField(
             controller: _stockPrice,
+            onSubmitted: (price) {
+              setState(() {
+                _isStockPriceValid = validate_money_value(price);
+              });
+            },
+
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.payments),
               hintText: 'Enter Stock Price',
@@ -147,6 +154,14 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         Flexible(
           child: TextField(
             controller: _stockAnnualDividends,
+            onSubmitted: (annualDividends) {
+              setState(() {
+                _isStockAnnualDividendsValid = validate_money_value(
+                  annualDividends,
+                );
+              });
+            },
+
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.savings),
               hintText: 'Enter Annual Dividends',
