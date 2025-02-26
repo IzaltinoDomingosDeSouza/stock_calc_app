@@ -134,6 +134,7 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         Flexible(
           child: TextField(
             controller: _stockPrice,
+            keyboardType: TextInputType.number,
             onSubmitted: (price) {
               setState(() {
                 _isStockPriceValid = validate_money_value(price);
@@ -154,6 +155,7 @@ class AddStockInfoState extends State<AddStockInfoScreen> {
         Flexible(
           child: TextField(
             controller: _stockAnnualDividends,
+            keyboardType: TextInputType.number,
             onSubmitted: (annualDividends) {
               setState(() {
                 _isStockAnnualDividendsValid = validate_money_value(

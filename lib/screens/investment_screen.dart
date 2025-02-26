@@ -91,6 +91,7 @@ class InvestmentState extends State<InvestmentScreen> {
         Flexible(
           child: TextField(
             controller: _investmentAmount,
+            keyboardType: TextInputType.number,
             onSubmitted: (amount) => calcInvestmentAmount(amount),
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.payments),

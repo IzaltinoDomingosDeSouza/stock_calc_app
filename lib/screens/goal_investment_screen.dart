@@ -96,6 +96,7 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
               Expanded(
                 child: TextField(
                   controller: _requiredAmount,
+                  keyboardType: TextInputType.number,
                   onSubmitted: (amount) => calcRequiredAmount(amount),
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.savings),
