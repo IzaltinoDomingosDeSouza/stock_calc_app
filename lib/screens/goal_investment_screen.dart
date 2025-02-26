@@ -96,7 +96,7 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
                 onSubmitted: (amount) => calcRequiredAmount(amount),
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.savings),
-                  hintText: 'Enter Dividends Amount',
+                  hintText: 'Enter Dividends',
                   border: OutlineInputBorder(),
                   errorText:
                       isRequiredAmountValid
@@ -106,9 +106,7 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
               ),
             ),
             SizedBox(width: 5),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.10,
-              child: DropdownMenu<String>(
+            DropdownMenu<String>(
                 initialSelection: selectedTimePeriod.name,
                 dropdownMenuEntries: const [
                   DropdownMenuEntry(value: 'Annually', label: 'Annually'),
@@ -120,7 +118,6 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
                   else
                     selectedTimePeriod = TimePeriod.Monthly;
                 },
-              ),
             ),
           ],
         ),
