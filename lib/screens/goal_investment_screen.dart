@@ -107,17 +107,17 @@ class GoalInvestmentState extends State<GoalInvestmentScreen> {
             ),
             SizedBox(width: 5),
             DropdownMenu<String>(
-                initialSelection: selectedTimePeriod.name,
-                dropdownMenuEntries: const [
-                  DropdownMenuEntry(value: 'Annually', label: 'Annually'),
-                  DropdownMenuEntry(value: 'Monthly', label: 'Monthly'),
-                ],
-                onSelected: (String? timePeriod) {
-                  if (timePeriod == null || timePeriod == 'Annually')
-                    selectedTimePeriod = TimePeriod.Annually;
-                  else
-                    selectedTimePeriod = TimePeriod.Monthly;
-                },
+              initialSelection: selectedTimePeriod.name,
+              dropdownMenuEntries: const [
+                DropdownMenuEntry(value: 'Annually', label: 'Annually'),
+                DropdownMenuEntry(value: 'Monthly', label: 'Monthly'),
+              ],
+              onSelected: (String? timePeriod) {
+                if (timePeriod == null || timePeriod == 'Annually')
+                  selectedTimePeriod = TimePeriod.Annually;
+                else
+                  selectedTimePeriod = TimePeriod.Monthly;
+              },
             ),
           ],
         ),
