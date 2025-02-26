@@ -90,7 +90,7 @@ class InvestmentState extends State<InvestmentScreen> {
           onSubmitted: (amount) => calcInvestmentAmount(amount),
           decoration: InputDecoration(
             prefixIcon: Icon(Icons.payments),
-            hintText: 'Enter Investment Amount',
+            hintText: 'Enter Investment',
             border: OutlineInputBorder(),
             errorText:
                 isInvestmentAmountValid ? null : 'Please enter a valid value',
